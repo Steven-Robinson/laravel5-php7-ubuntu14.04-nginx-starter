@@ -24,6 +24,11 @@ Vagrant.configure(2) do |config|
     mv composer.phar /usr/local/bin/composer
     cd /var/www/site
     composer install
+
+    if [[ ! -f composer.lock ]]; then
+        cp .env.example .env
+        php artisan key:generate
+    fi
   SHELL
 
 end
